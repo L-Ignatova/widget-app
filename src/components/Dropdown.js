@@ -5,13 +5,15 @@ const Dropdown = ({colorOptions, onSelectedChange, selected}) => {
   const ref = useRef();
 
   useEffect(() => {
-    document.body.addEventListener("click", (ev) => {
-      if (ref.current.contains(ev.target)) {
-        return;
-      }
+    const onBodyClick = (ev) => {
+      if (ref.current.contains(ev.target)) return;
       
-      setOpen(false)
-    }, {capture: true});
+      setOpen(false);
+    };
+    document.body.addEventListener("click", onBodyClick, {capture: true});
+
+    // going to be called whenever our Dropdown is about to be removed from the DOM
+    return () => document.body.removeEventListener("click", onBodyClick);
   }, []);
 
   const renderedColors = colorOptions.map(opt => {
