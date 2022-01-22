@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, Search, Dropdown, Translate } from './components';
+import { Accordion, Search, Dropdown, Translate, Route, Header } from './components';
 
 const items = [
   {
@@ -36,15 +36,24 @@ const App = () => {
 
   return (
     <div>
-      <Translate />
-      {/* <Dropdown 
-        options={options}
-        onSelectedChange={setSelected} 
-        selected={selected}
-        label="Select a color"
-      />
-      <Search />
-      <Accordion items={items} /> */}
+      <Header />
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/list">
+        <Search />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown 
+          options={options} 
+          onSelectedChange={setSelected} 
+          selected={selected}
+          label="Select a color"
+        />
+      </Route>
     </div>
     
   );

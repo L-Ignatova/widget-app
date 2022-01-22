@@ -13,7 +13,7 @@ const Dropdown = ({options, onSelectedChange, selected, label}) => {
     document.body.addEventListener("click", onBodyClick, {capture: true});
 
     // going to be called whenever our Dropdown is about to be removed from the DOM
-    return () => document.body.removeEventListener("click", onBodyClick);
+    return () => document.body.removeEventListener("click", onBodyClick, {capture: true});
   }, []);
 
   const renderedColors = options.map(opt => {
